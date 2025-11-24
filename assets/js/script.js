@@ -1,5 +1,5 @@
 
-import { GoogleGenAI } from "@google/genai";
+// import { GoogleGenAI } from "@google/genai";
 
 document.addEventListener('DOMContentLoaded', () => {
     initMobileMenu();
@@ -14,13 +14,17 @@ function initScrollAnimations() {
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
+                entry.target.classList.remove('will-animate');
                 entry.target.classList.add('visible');
                 observer.unobserve(entry.target); // Only animate once
             }
         });
     }, { threshold: 0.1 });
 
-    document.querySelectorAll('.fade-in-up').forEach(el => observer.observe(el));
+    document.querySelectorAll('.fade-in-up').forEach(el => {
+        el.classList.add('will-animate'); // Hide it via JS so it's visible if JS fails
+        observer.observe(el);
+    });
 }
 
 /* --- Mobile Menu --- */
@@ -181,26 +185,29 @@ function initChatBot() {
 
         try {
             // Retrieve API Key
-            const apiKey = process.env.API_KEY; 
-            if (!apiKey) {
-                throw new Error("API Key missing");
-            }
+            // const apiKey = process.env.API_KEY; 
+            // if (!apiKey) {
+            //     throw new Error("API Key missing");
+            // }
             
-            const ai = new GoogleGenAI({ apiKey });
+            // const ai = new GoogleGenAI({ apiKey });
             
-            const response = await ai.models.generateContent({
-                model: 'gemini-2.5-flash',
-                contents: text,
-                config: {
-                    systemInstruction: `You are "The Bouncer", the virtual AI promoter for Shooters II nightclub in Durham, NC. 
-                    Your tone is welcoming, western, and energetic. Use cowboy emojis occasionally.
-                    Keep responses short (under 50 words). 
-                    Facts: 827 W Morgan St. Mechanical bull. Large dance floor. Open Thu-Sat.`,
-                }
-            });
+            // const response = await ai.models.generateContent({
+            //     model: 'gemini-2.5-flash',
+            //     contents: text,
+            //     config: {
+            //         systemInstruction: `You are "The Bouncer", the virtual AI promoter for Shooters II nightclub in Durham, NC. 
+            //         Your tone is welcoming, western, and energetic. Use cowboy emojis occasionally.
+            //         Keep responses short (under 50 words). 
+            //         Facts: 827 W Morgan St. Mechanical bull. Large dance floor. Open Thu-Sat.`,
+            //     }
+            // });
             
-            const responseText = response.text;
+            // const responseText = response.text;
             
+            // Mock response since we are in static mode without modules
+            const responseText = "Howdy! I'm just a static bouncer right now. Come on down to Shooters II to see the real deal! 🤠";
+
             const loader = document.getElementById(loadingId);
             if(loader) loader.remove();
             

@@ -22,9 +22,15 @@ body {
 
 /* Animations */
 .fade-in-up {
+    /* Default state: Visible. JS will hide it if it runs. */
+    opacity: 1;
+    transform: none;
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.fade-in-up.will-animate {
     opacity: 0;
     transform: translateY(30px);
-    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
 }
 
 .fade-in-up.visible {
