@@ -7,7 +7,38 @@ document.addEventListener('DOMContentLoaded', () => {
     initLightbox();
     initChatBot();
     initScrollAnimations();
+    initHeroVideo();
 });
+
+/* --- Hero Video Loading --- */
+function initHeroVideo() {
+    const video = document.getElementById('hero-video');
+    if (!video) return;
+
+    const fallbackImage = "https://images.pexels.com/photos/18701329/pexels-photo-18701329.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940";
+    
+    const showVideo = () => {
+        video.classList.remove('opacity-0');
+    };
+
+    // If already ready
+    if (video.readyState >= 3) {
+        showVideo();
+        return;
+    }
+
+    // Listen for load
+    video.addEventListener('canplay', showVideo);
+
+    // Timeout fallback
+    setTimeout(() => {
+        // If video hasn't started playing or isn't ready enough
+        if (video.readyState < 3) {
+            video.poster = fallbackImage;
+            showVideo(); // Show the element (which now has the poster)
+        }
+    }, 2000);
+}
 
 /* --- Scroll Animations --- */
 function initScrollAnimations() {
