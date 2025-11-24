@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Events | Shooters II</title>
+    <meta name="description" content="Upcoming events at Shooters II. Bull riding, college nights, and special parties. Don't miss out.">
+    <meta property="og:title" content="Events at Shooters II">
+    <meta property="og:description" content="Check out what's happening this week at Durham's wildest nightclub.">
+    <meta property="og:image" content="https://images.pexels.com/photos/1181396/pexels-photo-1181396.jpeg">
+    <meta property="og:type" content="website">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&family=Rye&family=Oswald:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/gridscan.css">
+    <script src="https://unpkg.com/three@0.160.0/build/three.min.js"></script>
+    <script src="https://unpkg.com/postprocessing@6.33.3/build/postprocessing.js"></script>
+</head>
+<body class="text-stone-200 font-sans">
+    <div id="gridscan-container" class="gridscan"></div>
+    <nav id="navbar" class="fixed w-full z-50 transition-all duration-300 py-6 bg-transparent">
+        <div class="container mx-auto px-6 flex justify-end items-center">
+            <div class="hidden md:flex space-x-8">
+                <a href="index.html" class="nav-link text-stone-400 hover:text-amber-500 text-sm font-bold tracking-widest uppercase transition-all duration-200 font-western">Home</a>
+                <a href="events.html" class="nav-link text-amber-500 border-b-2 border-amber-500 text-sm font-bold tracking-widest uppercase transition-all duration-200 font-western">Events</a>
+                <a href="gallery.html" class="nav-link text-stone-400 hover:text-amber-500 text-sm font-bold tracking-widest uppercase transition-all duration-200 font-western">Gallery</a>
+                <a href="about.html" class="nav-link text-stone-400 hover:text-amber-500 text-sm font-bold tracking-widest uppercase transition-all duration-200 font-western">About</a>
+            </div>
+            <button id="mobile-menu-btn" class="md:hidden text-stone-200"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="6" x2="20" y2="6"/><line x1="4" y1="18" x2="20" y2="18"/></svg></button>
+        </div>
+        <div id="mobile-menu" class="md:hidden absolute top-full left-0 w-full bg-stone-900 border-t border-stone-800 transition-all duration-300 overflow-hidden max-h-0 opacity-0">
+            <div class="flex flex-col py-4 px-6 space-y-4">
+                <a href="index.html" class="text-lg font-bold uppercase tracking-wider text-stone-200 font-western">Home</a>
+                <a href="events.html" class="text-lg font-bold uppercase tracking-wider text-amber-500 font-western">Events</a>
+                <a href="gallery.html" class="text-lg font-bold uppercase tracking-wider text-stone-200 font-western">Gallery</a>
+                <a href="about.html" class="text-lg font-bold uppercase tracking-wider text-stone-200 font-western">About</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="pt-32 pb-20 min-h-screen">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-amber-600 font-bold tracking-[0.2em] mb-2 uppercase font-western">Don't Miss Out</h2>
+                <h1 class="text-5xl md:text-7xl font-normal text-stone-100 uppercase tracking-tighter font-western">
+                    Upcoming <span class="text-amber-600">Nights</span>
+                </h1>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 fade-in-up">
+                <!-- Event 1 -->
+                <div class="group relative bg-stone-900 border border-stone-800 rounded-xl overflow-hidden hover:border-amber-500/50 transition-all duration-300 flex flex-col md:flex-row hover:shadow-lg">
+                    <div class="md:w-2/5 relative overflow-hidden h-64 md:h-auto">
+                        <img src="https://images.pexels.com/photos/1181396/pexels-photo-1181396.jpeg?auto=compress&cs=tinysrgb&h=650&w=940" alt="Bull Night" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 filter sepia-[0.3]">
+                        <div class="absolute top-4 left-4 bg-stone-950/80 backdrop-blur text-stone-100 px-3 py-1 text-xs font-bold uppercase tracking-widest border-l-2 border-amber-500">Bull Riding</div>
+                    </div>
+                    <div class="md:w-3/5 p-8 flex flex-col justify-between">
+                        <div>
+                            <h3 class="text-2xl font-normal text-stone-100 uppercase mb-4 group-hover:text-amber-500 transition-colors font-western">Mechanical Bull Night</h3>
+                            <div class="space-y-3 mb-6 text-stone-400 text-sm">
+                                <p class="flex items-center"><span class="text-amber-600 mr-2 font-bold">DATE:</span> Friday, Oct 27</p>
+                                <p class="flex items-center"><span class="text-amber-600 mr-2 font-bold">TIME:</span> 10:00 PM - 2:00 AM</p>
+                            </div>
+                            <p class="text-stone-300 mb-6 leading-relaxed text-sm">The wildest ride in Durham. Challenge the mechanical bull for a chance to win VIP bottle service.</p>
+                        </div>
+                        <button class="w-full py-3 bg-transparent border border-stone-600 text-stone-200 font-bold uppercase tracking-widest hover:bg-amber-600 hover:border-amber-600 hover:text-stone-950 transition-all duration-300 font-western">RSVP / Details</button>
+                    </div>
+                </div>
+
+                <!-- Event 2 -->
+                <div class="group relative bg-stone-900 border border-stone-800 rounded-xl overflow-hidden hover:border-amber-500/50 transition-all duration-300 flex flex-col md:flex-row hover:shadow-lg">
+                    <div class="md:w-2/5 relative overflow-hidden h-64 md:h-auto">
+                        <img src="https://images.pexels.com/photos/2608517/pexels-photo-2608517.jpeg?auto=compress&cs=tinysrgb&h=650&w=940" alt="Rivalry Night" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 filter sepia-[0.3]">
+                        <div class="absolute top-4 left-4 bg-stone-950/80 backdrop-blur text-stone-100 px-3 py-1 text-xs font-bold uppercase tracking-widest border-l-2 border-amber-500">College Night</div>
+                    </div>
+                    <div class="md:w-3/5 p-8 flex flex-col justify-between">
+                        <div>
+                            <h3 class="text-2xl font-normal text-stone-100 uppercase mb-4 group-hover:text-amber-500 transition-colors font-western">Duke vs UNC Afterparty</h3>
+                            <div class="space-y-3 mb-6 text-stone-400 text-sm">
+                                <p class="flex items-center"><span class="text-amber-600 mr-2 font-bold">DATE:</span> Saturday, Oct 28</p>
+                                <p class="flex items-center"><span class="text-amber-600 mr-2 font-bold">TIME:</span> 9:00 PM - 2:30 AM</p>
+                            </div>
+                            <p class="text-stone-300 mb-6 leading-relaxed text-sm">The biggest rivalry in sports deserves the biggest party in town. Wear your colors.</p>
+                        </div>
+                        <button class="w-full py-3 bg-transparent border border-stone-600 text-stone-200 font-bold uppercase tracking-widest hover:bg-amber-600 hover:border-amber-600 hover:text-stone-950 transition-all duration-300 font-western">RSVP / Details</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="bg-stone-950 border-t border-stone-900 pt-16 pb-8">
+        <div class="container mx-auto px-6 text-center text-xs text-stone-600 uppercase tracking-widest">
+            <p>&copy; 2024 Shooters II. All Rights Reserved.</p>
+        </div>
+    </footer>
+    
+    <!-- Chatbot Container -->
+    <div id="chatbot-container"></div>
+    <script type="module" src="js/main.js"></script>
+    <script src="assets/js/gridscan-global.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const container = document.getElementById('gridscan-container');
+            if (container && typeof GridScan !== 'undefined') {
+                new GridScan(container);
+            }
+        });
+    </script>
+</body>
+</html>

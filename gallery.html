@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gallery | Shooters II</title>
+    <meta name="description" content="Photos from Shooters II. See the bull, the bar, and the party.">
+    <meta property="og:title" content="Shooters II Gallery">
+    <meta property="og:description" content="A glimpse into the wildest nights in Durham.">
+    <meta property="og:image" content="https://images.pexels.com/photos/34875058/pexels-photo-34875058.jpeg">
+    <meta property="og:type" content="website">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&family=Rye&family=Oswald:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <script type="importmap">
+    {
+      "imports": {
+        "@google/genai": "https://aistudiocdn.com/@google/genai@^1.30.0"
+      }
+    }
+    </script>
+</head>
+<body class="bg-stone-950 text-stone-200 font-sans">
+    <nav id="navbar" class="fixed w-full z-50 transition-all duration-300 py-6 bg-transparent">
+        <div class="container mx-auto px-6 flex justify-end items-center">
+            <div class="hidden md:flex space-x-8">
+                <a href="index.html" class="nav-link text-stone-400 hover:text-amber-500 text-sm font-bold tracking-widest uppercase transition-all duration-200 font-western">Home</a>
+                <a href="events.html" class="nav-link text-stone-400 hover:text-amber-500 text-sm font-bold tracking-widest uppercase transition-all duration-200 font-western">Events</a>
+                <a href="gallery.html" class="nav-link text-amber-500 border-b-2 border-amber-500 text-sm font-bold tracking-widest uppercase transition-all duration-200 font-western">Gallery</a>
+                <a href="about.html" class="nav-link text-stone-400 hover:text-amber-500 text-sm font-bold tracking-widest uppercase transition-all duration-200 font-western">About</a>
+            </div>
+            <button id="mobile-menu-btn" class="md:hidden text-stone-200"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="6" x2="20" y2="6"/><line x1="4" y1="18" x2="20" y2="18"/></svg></button>
+        </div>
+        <div id="mobile-menu" class="md:hidden absolute top-full left-0 w-full bg-stone-900 border-t border-stone-800 transition-all duration-300 overflow-hidden max-h-0 opacity-0">
+            <div class="flex flex-col py-4 px-6 space-y-4">
+                <a href="index.html" class="text-lg font-bold uppercase tracking-wider text-stone-200 font-western">Home</a>
+                <a href="events.html" class="text-lg font-bold uppercase tracking-wider text-stone-200 font-western">Events</a>
+                <a href="gallery.html" class="text-lg font-bold uppercase tracking-wider text-amber-500 font-western">Gallery</a>
+                <a href="about.html" class="text-lg font-bold uppercase tracking-wider text-stone-200 font-western">About</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="pt-32 pb-20 min-h-screen">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-12">
+                <h1 class="text-5xl md:text-7xl font-normal text-stone-100 uppercase tracking-tighter font-western">
+                    The <span class="text-amber-600">Scene</span>
+                </h1>
+            </div>
+
+            <div class="columns-1 md:columns-2 lg:columns-3 gap-4 space-y-4 gallery-container fade-in-up">
+                <!-- Images -->
+                <div class="break-inside-avoid relative group cursor-pointer overflow-hidden rounded-lg gallery-item" data-src="https://images.pexels.com/photos/801863/pexels-photo-801863.jpeg?auto=compress&cs=tinysrgb&h=650&w=940">
+                    <img src="https://images.pexels.com/photos/801863/pexels-photo-801863.jpeg?auto=compress&cs=tinysrgb&h=650&w=940" alt="Club Scene" class="w-full h-auto object-cover transition-transform duration-500 group-hover:scale-110 filter sepia-[0.3]">
+                </div>
+                <div class="break-inside-avoid relative group cursor-pointer overflow-hidden rounded-lg gallery-item" data-src="https://images.pexels.com/photos/34833698/pexels-photo-34833698.jpeg?auto=compress&cs=tinysrgb&h=650&w=940">
+                    <img src="https://images.pexels.com/photos/34833698/pexels-photo-34833698.jpeg?auto=compress&cs=tinysrgb&h=650&w=940" alt="Bull Ride" class="w-full h-auto object-cover transition-transform duration-500 group-hover:scale-110 filter sepia-[0.3]">
+                </div>
+                <div class="break-inside-avoid relative group cursor-pointer overflow-hidden rounded-lg gallery-item" data-src="https://images.pexels.com/photos/34875058/pexels-photo-34875058.jpeg?auto=compress&cs=tinysrgb&h=650&w=940">
+                    <img src="https://images.pexels.com/photos/34875058/pexels-photo-34875058.jpeg?auto=compress&cs=tinysrgb&h=650&w=940" alt="Bar Scene" class="w-full h-auto object-cover transition-transform duration-500 group-hover:scale-110 filter sepia-[0.3]">
+                </div>
+                <div class="break-inside-avoid relative group cursor-pointer overflow-hidden rounded-lg gallery-item" data-src="https://images.pexels.com/photos/2481603/pexels-photo-2481603.jpeg?auto=compress&cs=tinysrgb&h=650&w=940">
+                    <img src="https://images.pexels.com/photos/2481603/pexels-photo-2481603.jpeg?auto=compress&cs=tinysrgb&h=650&w=940" alt="Neon Lights" class="w-full h-auto object-cover transition-transform duration-500 group-hover:scale-110 filter sepia-[0.3]">
+                </div>
+                <div class="break-inside-avoid relative group cursor-pointer overflow-hidden rounded-lg gallery-item" data-src="https://images.pexels.com/photos/3550240/pexels-photo-3550240.jpeg?auto=compress&cs=tinysrgb&h=650&w=940">
+                    <img src="https://images.pexels.com/photos/3550240/pexels-photo-3550240.jpeg?auto=compress&cs=tinysrgb&h=650&w=940" alt="DJ Booth" class="w-full h-auto object-cover transition-transform duration-500 group-hover:scale-110 filter sepia-[0.3]">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Lightbox Modal -->
+    <div id="lightbox" class="fixed inset-0 z-[60] bg-stone-950/95 backdrop-blur-xl hidden flex items-center justify-center p-4">
+        <button id="lightbox-close" class="absolute top-6 right-6 text-stone-200 hover:text-amber-500 transition-colors">
+            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+        <img id="lightbox-img" src="" alt="Full size" class="max-h-[90vh] max-w-full shadow-lg border border-stone-800">
+    </div>
+
+    <footer class="bg-stone-950 border-t border-stone-900 pt-16 pb-8">
+        <div class="container mx-auto px-6 text-center text-xs text-stone-600 uppercase tracking-widest">
+            <p>&copy; 2024 Shooters II. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Chatbot Container -->
+    <div id="chatbot-container"></div>
+    <script type="module" src="js/main.js"></script>
+</body>
+</html>

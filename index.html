@@ -1,0 +1,165 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Shooters II | Ride the Bull</title>
+    <meta name="description" content="Welcome to Shooters II, Durham's wildest nightclub. Mechanical bull, live DJs, and the best party in town.">
+    <meta property="og:title" content="Shooters II | Ride the Bull">
+    <meta property="og:description" content="Durham's premier nightlife destination. Mechanical bull, dance floor, and good times.">
+    <meta property="og:image" content="https://images.pexels.com/photos/801863/pexels-photo-801863.jpeg">
+    <meta property="og:type" content="website">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&family=Rye&family=Oswald:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <script type="importmap">
+{
+  "imports": {
+    "@google/genai": "https://aistudiocdn.com/@google/genai@^1.30.0",
+    "react": "https://aistudiocdn.com/react@^19.2.0",
+    "react-router-dom": "https://aistudiocdn.com/react-router-dom@^7.9.6",
+    "lucide-react": "https://aistudiocdn.com/lucide-react@^0.554.0",
+    "react/": "https://aistudiocdn.com/react@^19.2.0/"
+  }
+}
+</script>
+</head>
+<body class="bg-stone-950 text-stone-200 selection:bg-amber-600 selection:text-white font-sans">
+
+    <!-- Navigation -->
+    <nav id="navbar" class="fixed w-full z-50 transition-all duration-300 py-6 bg-transparent">
+        <div class="container mx-auto px-6 flex justify-end items-center">
+            
+            <!-- Desktop Nav -->
+            <div class="hidden md:flex space-x-8">
+                <a href="index.html" class="nav-link text-amber-500 border-b-2 border-amber-500 text-sm font-bold tracking-widest uppercase transition-all duration-200 font-western">Home</a>
+                <a href="events.html" class="nav-link text-stone-400 hover:text-amber-500 text-sm font-bold tracking-widest uppercase transition-all duration-200 font-western">Events</a>
+                <a href="gallery.html" class="nav-link text-stone-400 hover:text-amber-500 text-sm font-bold tracking-widest uppercase transition-all duration-200 font-western">Gallery</a>
+                <a href="about.html" class="nav-link text-stone-400 hover:text-amber-500 text-sm font-bold tracking-widest uppercase transition-all duration-200 font-western">About</a>
+            </div>
+
+            <!-- Mobile Toggle -->
+            <button id="mobile-menu-btn" class="md:hidden text-stone-200 focus:outline-none">
+                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="6" x2="20" y2="6"/><line x1="4" y1="18" x2="20" y2="18"/></svg>
+            </button>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="md:hidden absolute top-full left-0 w-full bg-stone-900 border-t border-stone-800 transition-all duration-300 overflow-hidden max-h-0 opacity-0">
+            <div class="flex flex-col py-4 px-6 space-y-4">
+                <a href="index.html" class="text-lg font-bold uppercase tracking-wider text-amber-500 font-western">Home</a>
+                <a href="events.html" class="text-lg font-bold uppercase tracking-wider text-stone-200 hover:text-amber-500 font-western">Events</a>
+                <a href="gallery.html" class="text-lg font-bold uppercase tracking-wider text-stone-200 hover:text-amber-500 font-western">Gallery</a>
+                <a href="about.html" class="text-lg font-bold uppercase tracking-wider text-stone-200 hover:text-amber-500 font-western">About</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="relative h-screen w-full overflow-hidden flex items-center justify-center">
+        <div class="absolute inset-0 z-0">
+            <video autoplay muted loop playsinline poster="https://images.pexels.com/photos/18701329/pexels-photo-18701329.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" class="w-full h-full object-cover filter brightness-[0.5] sepia-[0.3]">
+                <source src="Images/Bull Riding.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+            <div class="absolute inset-0 bg-gradient-to-t from-stone-950 via-transparent to-stone-950/60"></div>
+        </div>
+
+        <div class="relative z-10 text-center px-4 max-w-5xl mx-auto fade-in-up">
+            <h2 class="text-amber-500 tracking-[0.3em] font-bold text-sm md:text-lg mb-4 uppercase font-western">The Wildest Saloon in the South</h2>
+            <h1 class="text-6xl md:text-8xl lg:text-9xl font-normal text-stone-100 mb-10 uppercase leading-none tracking-tighter font-western">
+                Shooters <span class="text-amber-600">II</span><br />
+                <span class="text-4xl md:text-6xl text-stone-400 block mt-4 font-western">Durham, NC</span>
+            </h1>
+            <div class="flex flex-col md:flex-row justify-center items-center gap-6">
+                <a href="events.html" class="px-8 py-4 bg-amber-700 text-white font-bold text-lg uppercase tracking-widest hover:bg-amber-600 transition-all border border-amber-600 font-western">
+                    Upcoming Events
+                </a>
+                <a href="about.html" class="px-8 py-4 border border-stone-500 text-stone-300 font-bold text-lg uppercase tracking-widest hover:bg-stone-800 hover:border-stone-400 transition-all font-western">
+                    Book VIP
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Featured Sections -->
+    <section class="py-20 bg-stone-950">
+        <div class="container mx-auto px-6 text-center fade-in-up">
+            <h2 class="text-3xl font-normal text-stone-100 uppercase mb-8 font-western">What We Offer</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Card 1 -->
+                <div class="p-6 bg-stone-900 rounded-lg border border-stone-800 hover:border-amber-600 transition-colors duration-300">
+                    <h3 class="text-xl font-bold text-amber-600 uppercase mb-3 font-western">Mechanical Bull</h3>
+                    <p class="text-stone-400">The only place in Durham where you can ride the bull. Challenge your friends.</p>
+                </div>
+                <!-- Card 2 -->
+                <div class="p-6 bg-stone-900 rounded-lg border border-stone-800 hover:border-stone-500 transition-colors duration-300">
+                    <h3 class="text-xl font-bold text-stone-300 uppercase mb-3 font-western">Live DJ & Music</h3>
+                    <p class="text-stone-400">Spinning the best country hits and club anthems all night long. The beat never stops.</p>
+                </div>
+                <!-- Card 3 -->
+                <div class="p-6 bg-stone-900 rounded-lg border border-stone-800 hover:border-amber-800 transition-colors duration-300">
+                    <h3 class="text-xl font-bold text-amber-800 uppercase mb-3 font-western">Full Bar</h3>
+                    <p class="text-stone-400">Specials on shark bowls and pitchers. VIP service available.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Simple Carousel Section -->
+    <section class="py-20 bg-stone-900 border-t border-stone-800 fade-in-up">
+        <div class="container mx-auto px-6">
+            <div class="flex justify-between items-end mb-10">
+                <h2 class="text-3xl font-normal text-stone-100 uppercase font-western">Vibe Check</h2>
+                <a href="gallery.html" class="text-amber-600 font-bold uppercase tracking-widest text-sm hover:text-white transition-colors">View Gallery &rarr;</a>
+            </div>
+            
+            <div class="carousel-container relative overflow-hidden rounded-xl h-96 border border-stone-800">
+                <div id="carousel-track" class="flex transition-transform duration-500 h-full">
+                    <img src="https://images.pexels.com/photos/1124079/pexels-photo-1124079.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" class="w-full md:w-1/3 h-full object-cover flex-shrink-0 border-r border-stone-950" alt="Party">
+                    <img src="https://images.pexels.com/photos/18701329/pexels-photo-18701329.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" class="w-full md:w-1/3 h-full object-cover flex-shrink-0 border-r border-stone-950" alt="Bull">
+                    <img src="https://images.pexels.com/photos/342520/pexels-photo-342520.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" class="w-full md:w-1/3 h-full object-cover flex-shrink-0 border-r border-stone-950" alt="Bar">
+                    <img src="https://images.pexels.com/photos/260922/pexels-photo-260922.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" class="w-full md:w-1/3 h-full object-cover flex-shrink-0 border-r border-stone-950" alt="Crowd">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-stone-950 border-t border-stone-900 pt-16 pb-8">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
+                <div class="text-center md:text-left">
+                    <h3 class="text-3xl font-normal uppercase italic mb-4 font-western">
+                        <span class="text-stone-100">Shooters</span> <span class="text-amber-600">II</span>
+                    </h3>
+                    <p class="text-stone-500 max-w-xs mx-auto md:mx-0">Durham's premier nightlife destination.</p>
+                </div>
+                <div class="text-center">
+                    <h4 class="text-xl font-bold text-stone-200 mb-6 tracking-wider font-western">Find Us</h4>
+                    <p class="text-stone-500">827 W Morgan St, Durham, NC</p>
+                    <p class="text-stone-500">(919) 680-0428</p>
+                </div>
+                <div class="text-center md:text-right">
+                    <h4 class="text-xl font-bold text-stone-200 mb-6 tracking-wider font-western">Connect</h4>
+                    <div class="flex justify-center md:justify-end space-x-6 text-stone-500">
+                        <a href="#" class="hover:text-amber-600">Instagram</a>
+                        <a href="#" class="hover:text-blue-600">Facebook</a>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-stone-900 pt-8 text-center text-xs text-stone-700 uppercase tracking-widest">
+                <p>&copy; 2024 Shooters II. All Rights Reserved. 21+ After 9PM.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Chatbot Container -->
+    <div id="chatbot-container"></div>
+
+    <script type="module" src="js/main.js"></script>
+</body>
+</html>

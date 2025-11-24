@@ -1,0 +1,62 @@
+body {
+    font-family: 'Montserrat', sans-serif;
+    background-color: #0c0a09; /* stone-950 */
+}
+
+.font-heading {
+    font-family: 'Oswald', sans-serif;
+}
+
+.font-western {
+    font-family: 'Rye', serif !important;
+}
+
+/* Western/Warm Glows instead of Neon */
+.glow-text-amber {
+    text-shadow: 0 0 15px rgba(217, 119, 6, 0.4);
+}
+
+.shadow-warm {
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+}
+
+/* Animations */
+.fade-in-up {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.fade-in-up.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+@keyframes pulse-slow {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.8; }
+}
+
+.animate-pulse-slow {
+    animation: pulse-slow 4s infinite;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+::-webkit-scrollbar-track {
+    background: #1c1917; /* stone-900 */
+}
+::-webkit-scrollbar-thumb {
+    background: #44403c; /* stone-700 */
+    border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #d97706; /* amber-600 */
+}
+
+/* Radial gradient overlay for Hero - Warm/Amber */
+.bg-radial-gradient {
+    background: radial-gradient(ellipse at center, rgba(180, 83, 9, 0.15), rgba(12, 10, 9, 0.8), #0c0a09);
+}
