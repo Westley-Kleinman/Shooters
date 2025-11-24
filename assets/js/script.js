@@ -2,7 +2,6 @@
 // import { GoogleGenAI } from "@google/genai";
 
 document.addEventListener('DOMContentLoaded', () => {
-    initMobileMenu();
     initNavbarScroll();
     initLightbox();
     initChatBot();
@@ -56,25 +55,6 @@ function initScrollAnimations() {
         el.classList.add('will-animate'); // Hide it via JS so it's visible if JS fails
         observer.observe(el);
     });
-}
-
-/* --- Mobile Menu --- */
-function initMobileMenu() {
-    const btn = document.getElementById('mobile-menu-btn');
-    const menu = document.getElementById('mobile-menu');
-    
-    if (btn && menu) {
-        btn.addEventListener('click', () => {
-            const isOpen = menu.style.maxHeight !== '0px' && menu.style.maxHeight !== '';
-            if (isOpen) {
-                menu.style.maxHeight = '0px';
-                menu.style.opacity = '0';
-            } else {
-                menu.style.maxHeight = '300px';
-                menu.style.opacity = '1';
-            }
-        });
-    }
 }
 
 /* --- Sticky Navbar --- */
