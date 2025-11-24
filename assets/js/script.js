@@ -184,29 +184,54 @@ function initChatBot() {
         messages.scrollTop = messages.scrollHeight;
 
         try {
-            // Retrieve API Key
-            // const apiKey = process.env.API_KEY; 
-            // if (!apiKey) {
-            //     throw new Error("API Key missing");
-            // }
+            // Hardcoded API Key
+            const apiKey = "AIzaSyBsx7j0uFP99YMHkuARw9ZDf4AEdlpVIKI"; 
             
-            // const ai = new GoogleGenAI({ apiKey });
-            
-            // const response = await ai.models.generateContent({
-            //     model: 'gemini-2.5-flash',
-            //     contents: text,
-            //     config: {
-            //         systemInstruction: `You are "The Bouncer", the virtual AI promoter for Shooters II nightclub in Durham, NC. 
-            //         Your tone is welcoming, western, and energetic. Use cowboy emojis occasionally.
-            //         Keep responses short (under 50 words). 
-            //         Facts: 827 W Morgan St. Mechanical bull. Large dance floor. Open Thu-Sat.`,
-            //     }
-            // });
-            
-            // const responseText = response.text;
-            
-            // Mock response since we are in static mode without modules
-            const responseText = "Howdy! I'm just a static bouncer right now. Come on down to Shooters II to see the real deal! 🤠";
+            // Combine system instruction with user text to ensure compatibility
+            const prompt = `
+                System Instruction: You are "The Bouncer", the virtual AI promoter for Shooters II nightclub in Durham, NC. 
+                Your tone is welcoming, western, and energetic. Use cowboy emojis occasionally.
+                Keep responses short (under 50 words). 
+                Facts: 827 W Morgan St. Mechanical bull. Large dance floor. Open Thu-Sat. 18+ to enter, 21+ to drink.
+                
+                User Question: ${text}
+            `;
+
+            // Try multiple models based on available list
+            const models = ['gemini-2.0-flash', 'gemini-2.0-flash-exp', 'gemini-flash-latest'];
+            let responseText = null;
+            let lastError = null;
+
+            for (const model of models) {
+                try {
+                    const url = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${apiKey}`;
+                    const response = await fetch(url, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            contents: [{ parts: [{ text: prompt }] }]
+                        })
+                    });
+
+                    if (!response.ok) {
+                        const errorData = await response.json().catch(() => ({}));
+                        throw new Error(errorData.error?.message || response.statusText);
+                    }
+
+                    const data = await response.json();
+                    if (data.candidates && data.candidates[0] && data.candidates[0].content) {
+                        responseText = data.candidates[0].content.parts[0].text;
+                        break; // Success!
+                    }
+                } catch (e) {
+                    console.warn(`Model ${model} failed:`, e);
+                    lastError = e;
+                }
+            }
+
+            if (!responseText) {
+                throw lastError || new Error("All models failed. Please check API Key permissions.");
+            }
 
             const loader = document.getElementById(loadingId);
             if(loader) loader.remove();
@@ -214,10 +239,33 @@ function initChatBot() {
             appendMessage(responseText, false);
 
         } catch (error) {
-            console.error(error);
+            console.error("AI Failed, falling back to rules:", error);
+            
+            // Fallback Rule-Based Logic
+            let responseText = "I didn't quite catch that, partner. Ask me about the **hours**, **dress code**, **age limit**, or the **bull**! 🤠";
+            const lowerText = text.toLowerCase();
+
+            if (lowerText.includes('age') || lowerText.includes('old') || lowerText.includes('21') || lowerText.includes('id')) {
+                responseText = "We are typically **18+ to enter** and strictly **21+ to drink**. On big event nights, it might be 21+ only. Bring your ID! 🆔";
+            } else if (lowerText.includes('hour') || lowerText.includes('open') || lowerText.includes('time') || lowerText.includes('when')) {
+                responseText = "We're usually open **Thursday, Friday, and Saturday** from **9 PM to 2 AM**. Arrive early to beat the line! 🕘";
+            } else if (lowerText.includes('dress') || lowerText.includes('wear') || lowerText.includes('clothes')) {
+                responseText = "No strict dress code, but keep it decent! Cowboy boots and hats are always welcome. 👢";
+            } else if (lowerText.includes('bull') || lowerText.includes('ride')) {
+                responseText = "The mechanical bull is legendary! It's usually free to ride if you sign the waiver. Can you last 8 seconds? 🐂";
+            } else if (lowerText.includes('location') || lowerText.includes('where') || lowerText.includes('address')) {
+                responseText = "We're at **827 W Morgan St, Durham, NC**. Just look for the crowd! 📍";
+            } else if (lowerText.includes('cost') || lowerText.includes('price') || lowerText.includes('cover')) {
+                responseText = "Cover charge varies by night and event. It's usually between $10 and $20. Cash is king at the door! 💵";
+            } else if (lowerText.includes('hello') || lowerText.includes('hi') || lowerText.includes('hey')) {
+                responseText = "Howdy! Welcome to Shooters II. What can I help you with tonight?";
+            }
+
             const loader = document.getElementById(loadingId);
             if(loader) loader.remove();
-            appendMessage("Can't hear you over the music! (Check API Key)", false);
+            
+            // Append the fallback message (and maybe log the error to console only)
+            appendMessage(responseText, false);
         }
     };
 
